@@ -1,0 +1,33 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt" 
+	xmlns:sf="http://www.springframework.org/tags/faces">
+
+Login page
+
+<a href="${request.contextPath}/pages/home.xhtml"> home pages</a>
+	<!--MENU-->
+	<div id="menu">
+		<div>
+			<div id="navigation_container">
+				<ul id="navigation">
+					<li><a id="app" href="#">Menu 1</a></li>
+					<li><a id="pop" href="#">Menu 2</a></li>
+				</ul>
+			</div>
+			<div id="sub_nav">
+				<ul id="sub_app">
+					<li><a href="${request.contextPath}/pages/person/person.xhtml">Exemple</a> |</li>
+					<li><a href="${request.contextPath}/pages/home.xhtml">Submenu 1 2</a> |</li>
+				</ul>
+				<ul id="sub_app">
+					<li><a href="${request.contextPath}/pages/home.xhtml">Submenu 2 1</a> |</li>
+					<li><a href="${request.contextPath}/pages/home.xhtml">Submenu 2 2</a> |</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</ui:composition>
