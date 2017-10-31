@@ -11,32 +11,32 @@ import org.springframework.stereotype.Repository;
 import fr.htc.formation.bibliotech.dao.model.Person;
 
 @Repository
-public class PersonDAOImpl implements PersonDAO{
-	
+public class PersonDAOImpl implements PersonDAO {
+
 	private static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
-	 
-    private SessionFactory sessionFactory;
-     
-    public void setSessionFactory(SessionFactory sf){
-        this.sessionFactory = sf;
-    }
- 
-    @Override
-    public void addPerson(Person p) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.persist(p);
-        logger.info("Person saved successfully, Person Details="+p);
-    }
- 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Person> listPersons() {
-        Session session = this.sessionFactory.getCurrentSession();
-        List<Person> personsList = session.createQuery("from Person").list();
-        for(Person p : personsList){
-            logger.info("Person List::"+p);
-        }
-        return personsList;
-    }
- 
+
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sf) {
+		this.sessionFactory = sf;
+	}
+
+	@Override
+	public void addPerson(Person p) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(p);
+		logger.info("Person saved successfully, Person Details=" + p);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Person> listPersons() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Person> personsList = session.createQuery("from Person").list();
+		for (Person p : personsList) {
+			logger.info("Person List::" + p);
+		}
+		return personsList;
+	}
+
 }
