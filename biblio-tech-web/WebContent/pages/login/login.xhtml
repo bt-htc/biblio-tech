@@ -1,14 +1,39 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core" 
-	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:fmt="http://java.sun.com/jstl/fmt" 
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
 	xmlns:sf="http://www.springframework.org/tags/faces"
 	xmlns:sec="http://center.bdf.fr">
 
-Login page
 
-<a href="${request.contextPath}/pages/home.xhtml"> home pages</a>
+
+	<a href="${request.contextPath}/pages/home.xhtml"> home pages</a>
+	<h:head>
+		<title>login</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h1 id="haut">Bienvenue à la bibliothèque <br />High Tech Compass</h1>
+
+			<h:outputText value="Username" />
+			<h:inputText id="username" value="#{login.user}"></h:inputText>
+
+			<h:message for="username"></h:message>
+			
+
+			<h:outputText value="Password" />
+			<h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
+			<h:message for="password"></h:message>
+
+
+			<h:commandButton action="#{login.validateUsernamePassword}"
+				value="Login"></h:commandButton>
+		</h:form>
+
+	</h:body>
+	</html>
+
 </ui:composition>
