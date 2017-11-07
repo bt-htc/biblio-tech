@@ -1,72 +1,69 @@
 package fr.htc.formation.bibliotech.web.beans;
-
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import fr.htc.formation.bibliotech.web.security.SessionContextHelper;
+import com.journaldev.jsf.dao.LoginDAO;
+import com.journaldev.jsf.util.SessionUtils;
 
-@ManagedBean(name = "loginBean")
+@ManagedBean
 @SessionScoped
-/**
- *
- * @author User
- */
-public class LoginBean implements Serializable {
+public class Login implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private String password;
-	private String message, uname;
+	private static final long serialVersionUID = 1094801825228386363L;
+	
+	private String pwd;
+	private String msg;
+	private String user;
 
-	public String getMessage() {
-		return message;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMsg() {
+		return msg;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
-	public String getUname() {
-		return uname;
+	public String getUser() {
+		return user;
 	}
 
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
-	public String loginProject() {
-		boolean result = true;
-		if (result) {
-			// get Http Session and store username
-			HttpSession session = SessionContextHelper.getSession();
-			session.setAttribute("username", uname);
-
-			return "home";
+	//validate login
+	public String validateUsernamePassword() {
+		boolean valid = LoginDAO.validate(user, pwd);
+		if (valid) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", user);
+			return "admin";
 		} else {
-
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Invalid Login!", "Please Try Again!"));
-
-			// invalidate session, and redirect to other pages
-
-			// message = "Invalid Login. Please Try Again!";
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Incorrect Username and Passowrd",
+							"Please enter correct username and Password"));
 			return "login";
 		}
 	}
 
+	//logout event, invalidate session
 	public String logout() {
-		HttpSession session = SessionContextHelper.getSession();
+		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
 		return "login";
 	}
