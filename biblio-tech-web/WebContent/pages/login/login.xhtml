@@ -8,32 +8,38 @@
 	xmlns:sf="http://www.springframework.org/tags/faces"
 	xmlns:sec="http://center.bdf.fr">
 
-
-
 	<a href="${request.contextPath}/pages/home.xhtml"> home pages</a>
-	<h:head>
-		<title>login</title>
-	</h:head>
+	<head>
+		<link type="text/css" rel="stylesheet" href="./login.css" />
+	</head>
+
+
 	<h:body>
-		<h:form>
-			<h1 id="haut">Bienvenue à la bibliothèque <br />High Tech Compass</h1>
 
-			<h:outputText value="Username" />
-			<h:inputText id="username" value="#{login.user}"></h:inputText>
+		<h1 id="haut">
+			Bienvenue à la bibliothèque <br />High Tech Compass
+			<br />
+		</h1>
 
-			<h:message for="username"></h:message>
-			
+		<div id="div1">
 
-			<h:outputText value="Password" />
-			<h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-			<h:message for="password"></h:message>
+			<div id="div2">
 
+				<h:form>
+					<h:inputText type="text" id="unpw" value="" placeholder="Adresse Mail" style="width:50%"></h:inputText>
+					<h:message for="username"></h:message>
+					<br />
+				</h:form>
 
-			<h:commandButton action="#{login.validateUsernamePassword}"
-				value="Login"></h:commandButton>
-		</h:form>
+				<h:form>
+					<h:inputSecret id="unpw" value="" placeholder="Mot de passe" style="width: 50%"></h:inputSecret>
+					<h:message for="password"></h:message>
+				</h:form>
+				
+			</div>
+		</div>
+
 
 	</h:body>
-	</html>
 
 </ui:composition>
