@@ -5,10 +5,18 @@
 	xmlns:h="http://java.sun.com/jsf/html" 
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:fmt="http://java.sun.com/jstl/fmt" 
-	xmlns:sf="http://www.springframework.org/tags/faces"
-	xmlns:sec="http://center.bdf.fr">
+	xmlns:sf="http://www.springframework.org/tags/faces">
 
 Login page
 
 <a href="${request.contextPath}/pages/home.xhtml"> home pages</a>
+
+
+<h:form>
+	<h:messages globalOnly="true" style="color: red"/>
+	<h1>Page de test : Recover password</h1>
+	
+	<h:inputText value="${passwordRecovryBean.email}"></h:inputText>
+	<h:commandButton action="${passwordRecovryController.recoverPassword(passwordRecovryBean)}" value="Envoyer"></h:commandButton>
+</h:form>
 </ui:composition>

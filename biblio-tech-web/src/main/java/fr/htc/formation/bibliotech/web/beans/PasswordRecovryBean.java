@@ -3,10 +3,8 @@ package fr.htc.formation.bibliotech.web.beans;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "passwordRecovryBean")
-@SessionScoped
 public class PasswordRecovryBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,6 +14,7 @@ public class PasswordRecovryBean implements Serializable {
 	}
 
 	public PasswordRecovryBean(String email) {
+		super();
 		this.email = email;
 	}
 

@@ -1,22 +1,34 @@
 package fr.htc.formation.bibliotech.web.controller;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
 
+import fr.htc.formation.bibliotech.service.PasswordRecovryService;
 import fr.htc.formation.bibliotech.web.beans.PasswordRecovryBean;
 
 @Component
 @RequestScoped
 public class PasswordRecovryController {
+	
+	
+	@Inject
+	PasswordRecovryService passwordRecovryService;
 
 	public void recoverPassword(PasswordRecovryBean passwordRecovryBean) {
 
 		try {
 			// Je pars du principe que le paramatre est valide
-
+			boolean compteExist = passwordRecovryService.findCompteByEmail(passwordRecovryBean.getEmail());
 			// 1- Je verifie l'existance du compte
-			// Sinon : Message d'erreur
+			if(compteExist == false){
+				// Sinon : Message d'erreur       
+				 FacesMessage message = new FacesMessage( "Ce comptes n'existe pas !" );
+			     FacesContext.getCurrentInstance().addMessage( null, message );
+			}
 			// 2-Je récupère le password
 
 			// 3 Je prepare le mail
