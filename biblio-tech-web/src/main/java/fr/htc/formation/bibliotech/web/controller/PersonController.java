@@ -13,21 +13,20 @@ import fr.htc.formation.bibliotech.web.beans.PersonBean;
 @Component
 @RequestScoped
 public class PersonController {
-	
+
 	@Inject
 	PersonService personService;
-	
-	public void addPerson(PersonBean personBean){
-		
+
+	public void addPerson(PersonBean personBean) {
+
 		personService.addPerson(personBean);
 		System.out.println(personBean.getName() + " " + personBean.getCountry());
 		System.out.println(personService);
-		
+
 	}
-	
-	
-	public List<PersonBean> listPersons(){
+
+	public List<PersonBean> listPersons() {
 		return personService.listPersons();
 	}
-	
+
 }
