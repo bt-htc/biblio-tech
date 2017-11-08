@@ -5,18 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.journaldev.jsf.util.DataConnect;
+import fr.htc.formation.bibliotech.web.controller.DataConnect;
 
 public class LoginDAO {
 
-	public static boolean validate(String user, String password) {
+	public static boolean validate(String email, String password) {
 		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 			con = DataConnect.getConnection();
-			ps = con.prepareStatement("Select uname, password from Users where uname = ? and password = ?");
-			ps.setString(1, user);
+			ps = con.prepareStatement("Select email, password from personne where email = ? and password = ?");
+			ps.setString(1, email);
 			ps.setString(2, password);
 
 			ResultSet rs = ps.executeQuery();

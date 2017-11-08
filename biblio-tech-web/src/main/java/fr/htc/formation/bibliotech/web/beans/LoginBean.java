@@ -7,18 +7,18 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import com.journaldev.jsf.dao.LoginDAO;
-import com.journaldev.jsf.util.SessionUtils;
 
+import fr.htc.formation.bibliotech.dao.LoginDAO;
+import fr.htc.formation.bibliotech.web.security.SessionUtils;
 @ManagedBean
 @SessionScoped
-public class Login implements Serializable {
+public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1094801825228386363L;
 	
 	private String pwd;
-	private String msg;
-	private String user;
+
+	private String email;
 
 	public String getPwd() {
 		return pwd;
@@ -28,35 +28,28 @@ public class Login implements Serializable {
 		this.pwd = pwd;
 	}
 
-	public String getMsg() {
-		return msg;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	//validate login
 	public String validateUsernamePassword() {
-		boolean valid = LoginDAO.validate(user, pwd);
+		boolean valid = LoginDAO.validate(email, pwd);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", user);
+			session.setAttribute("username", email);
 			return "admin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
-							"Incorrect Username and Passowrd",
-							"Please enter correct username and Password"));
+							"Incorrect Username or Passowrd",
+							"Please enter correct email and Password"));
 			return "login";
 		}
 	}
