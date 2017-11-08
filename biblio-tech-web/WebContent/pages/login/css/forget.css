@@ -3,13 +3,16 @@
 h1 {
 	text-align: center;
 	color: #4682b4;
+	height:80px;
 	
 }
 body 
 {
+	background-image:url(images/Arriere_plan.jpg);
+	background-repeat:no-repeat;
 	text-align:center;	
 	font: 10px ;
-	
+	padding-top: 20%;
 }
 	
 
@@ -20,6 +23,7 @@ body
 	margin: auto;
 	text-align: center; 
 	height:80px;
+	color: #4682b4;
 
 }
 #div2 
@@ -35,15 +39,39 @@ body
 	border-top: 0px;
 	border-right: 0px;
 	border-left: 0px;
+	background-color: rgba(0, 100, 200, 0);
 	width: 50%;
+	
+}
+inputText:focus
+{	
+	border: 1px solid #4682b4;
+	border-top: 0px;
+	border-right: 0px;
+	border-left: 0px;
+	
 }
 .bouton {
 	padding:6px 0 6px 0;
 	font:bold 13px Arial;
-	background:#4682b4;
-	color:#fff;
+	color: white; 
+	background-color: rgba(0, 100, 200, 0.5);
 	border-radius:2px;
 	width:100px;
 	border:none;
 }
 
+
+input::-webkit-input-placeholder {
+    color: #4682b4;
+}
+input:focus::-webkit-input-placeholder {
+    color: #4682b4;
+}
+/* Firefox < 19 */
+input:-moz-placeholder {
+    color: #4682b4;
+}
+input:focus:-moz-placeholder {
+    color: #4682b4;
+}
